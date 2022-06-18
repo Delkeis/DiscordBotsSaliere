@@ -3,6 +3,14 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+#Config extention 
+*.env
+*.ini
+*.code-workspace
+
+#temporary database 
+tmp
+
 # C extensions
 *.so
 
