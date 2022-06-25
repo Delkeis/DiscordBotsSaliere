@@ -34,7 +34,7 @@ class dataBase:
         y = False
 
         for i in self.bd.get('player_data'):
-          if i['riotId'] == searchStr:
+          if i['riotId'] == searchStr or i['discordId'] == searchStr:
                 y = True
                 break
         return(y)
