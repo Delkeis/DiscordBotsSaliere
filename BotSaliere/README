@@ -1,0 +1,16 @@
+Bot discord qu ià pour but de publier des news sur des channels discord
+
+
+
+
+
+
+
+
+
+
+
+DEPENDENCIES : 
+  PythonPackage :
+    - discord
+    - tweepy
