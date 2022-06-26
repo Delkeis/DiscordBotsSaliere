@@ -29,7 +29,7 @@ class dataBase:
             "riotPuuid": player.getRiotPuuid()
         })
 
-    #permet de rechercher une entrée dans la base de donnée via le RiotId
+    #permet de rechercher une entrée dans la base de donnée via le RiotId ou le discordId
     def searchData(self, searchStr):
         y = False
 
@@ -38,6 +38,32 @@ class dataBase:
                 y = True
                 break
         return(y)
+
+    # prend en argument la structure Player pour mettre à jour le fichier de bdd
+    # La fonction n'est pas encore tester  
+    def updateData(self, player: Player):
+        y = False
+
+        if (self.searchData(player.getDiscordId()) == True) or (self.searchData(player.getRiotId()) == True):
+            print("updating datas")
+            cpt = 0
+            while cpt <= len(self.bd):
+                try:
+                    if self.bd['player_data'][cpt]['riotId'] == player.getRiotId():
+                        self.bd['player_data'][cpt] = {
+                            "name": player.getName(),
+                            "level": player.getLevel(),
+                            "xp": player.getXp(),
+                            "discordId": player.getDiscordId(),
+                            "riotId": player.getRiotId(),
+                            "riotPuuid": player.getRiotPuuid()
+                            }
+                except:
+                    break
+                cpt = cpt + 1
+            return(True)    
+        else:
+            return(False)
 
     #fixe les nouvelles entrées dans la base de donnée
     def dumpData(self):
