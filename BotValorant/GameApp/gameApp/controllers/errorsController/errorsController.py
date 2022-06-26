@@ -13,3 +13,5 @@ class ErrorController:
     def callErrorCode(self, errorCode: int):
         
         for i in self.codeDd.get('Error_Code'):
+            if i['code'] == errorCode:
+                print("Code erreur "+errorCode+" : "+i['message'])
