@@ -1,0 +1,20 @@
+{
+    "Error_Code": [
+        {
+            "id": 0,
+            "code": -100,
+            "message": "La Base de donnée n'a pas été mis à jour suite à une érreur !"
+        },
+        {
+            "id": 1,
+            "code": 0,
+            "message": "Entrée ajouté à la base de donnée"
+        },
+        {
+            "id": 2,
+            "code": 1,
+            "message": "La Base de donnée a été mis à jour"
+        }
+
+    ]
+}

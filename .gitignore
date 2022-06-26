@@ -10,6 +10,7 @@ __pycache__/
 
 #temporary database 
 tmp
+.sql
 
 # C extensions
 *.so
@@ -135,3 +136,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+Bdd/Def.sql
