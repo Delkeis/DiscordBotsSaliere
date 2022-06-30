@@ -1,4 +1,4 @@
-from apiController.twitterApiController import TwitterApi
+from Controllers.twitterApiController import TwitterApi
 from PyInclude import *
 
 def main():

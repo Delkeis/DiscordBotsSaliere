@@ -26,9 +26,9 @@ class TwitterApi:
 
     def initUser(self, username="Delkeis"):
         self.fields = "created_at,description"
-        self.tweet = ""
+        self.twtf = "created_at"
         self.users = username
-        self.params = {"usernames": self.users, "user.fields": self.fields, "expansions": self.expantion}
+        self.params = {"usernames": self.users, "user.fields": self.fields, "tweet.fields": self.twtf}
 
     def getAuth(self):
         print("Got OAuth token: %s" % self.resource_owner_key)
@@ -87,10 +87,10 @@ class TwitterApi:
             resource_owner_secret=self.access_token_secret,
         )
 
-        prm = {"author_id": userId}
+        prm = {"tweet.fields": "created_at"}
 
         self.response = self.oauth.get(
-            "https://api.twitter.com/2/tweets", params=prm
+            "https://api.twitter.com/2/users/{}/tweets".format(userId), params=prm
         )
         if self.response.status_code != 200:
             raise Exception(
