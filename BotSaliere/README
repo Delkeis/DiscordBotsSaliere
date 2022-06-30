@@ -1,14 +1,17 @@
-Bot discord qu ià pour but de publier des news sur des channels discord
+Bot discord qui à pour but de publier des news sur des channels discord
 
-
-
-
-
-
-
-
-
-
+outils utiliser :
+  - Bdd contenant :
+    - les comptes twitter inscrits
+    - les tweets et l'historique des tweets pris en comptes
+  
+Principe de fonctionnement : (suceptible d'évoluer)
+ 1 - j'inscrit des comptes twitter dans ma base de donnée
+ 2 - je définit un hashTag à vérifier
+ 3 - j'inspecte tous les tweets de tous les comptes inscits dans la base de donnée
+ 4 - je récupère tous les tweets qui, dans leur texte possède le hashTag précédemment définit
+ 5 - je les inscrits dans la base de donnée
+ 6 - je les publie sur le channel discord
 
 DEPENDENCIES : 
   PythonPackage :
