@@ -2,13 +2,12 @@ from requests_oauthlib import OAuth1Session
 from Config.config import ConfigMod
 import json
 
-class TwitterApi():
+class TwitterApi:
     def __init__(self):
         self.configFile = ConfigMod()
         self.consumer_key=self.configFile.getParameter("twitterApiKey")
         self.consumer_secret=self.configFile.getParameter("twitterApiSecretKey")
 
-        self.fields = "created_at,description"
         self.initUser()
 
         # Get request token
@@ -26,8 +25,10 @@ class TwitterApi():
         self.getAuth()
 
     def initUser(self, username="Delkeis"):
+        self.fields = "created_at,description"
+        self.tweet = ""
         self.users = username
-        self.params = {"usernames": self.users, "user.fields": self.fields}
+        self.params = {"usernames": self.users, "user.fields": self.fields, "expansions": self.expantion}
 
     def getAuth(self):
         print("Got OAuth token: %s" % self.resource_owner_key)
