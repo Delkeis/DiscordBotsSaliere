@@ -1,9 +1,9 @@
 class TweetObj:
-    def __init__(self, id, text=None, created_at=None):
+    def __init__(self, id, text=None, created_at=None, pushed=0):
         self.text = text
         self.created_at = created_at
         self.id = id
-        self.pushed = 0
+        self.pushed = pushed
 
     def getText(self):
         return(self.text)

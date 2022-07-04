@@ -10,6 +10,8 @@ class Engine:
         self.bdd = dataBase()
         self.twp = TwitterApi()
 
+
+
     def register(self, param=None):
         if(param == None):
             return False
@@ -29,19 +31,21 @@ class Engine:
         else:
             return("l'utilisateur existe déjà !")
 
-    def buildRequest(self):
-            
-            rsp = self.twp.userRequest("NeoTastyNetwork")
-            usr = TweeterUser(rsp['data'][0]['id'], desc=rsp['data'][0]['description'], name=rsp['data'][0]['name'],
-                                created_at=rsp['data'][0]['created_at'], username=rsp['data'][0]['username'])
-            print(rsp)
-            if self.bdd.searchData(usr) == False:
-                self.bdd.appendData(usr)
-            tweets = self.twp.tweetsRequest(usr.getId())
+    def scrapTweets(self):
+        users = self.bdd.getUserData()
 
+        for u in users:
+            usr = TweeterUser(u['id'], desc=u['description'], name=u['user'], created_at=u['created_at'], username=u['username'])
+            tweets = self.twp.tweetsRequest(usr.getId())
             for t in tweets['data']:
                 twt = TweetObj(t['id'], text=t['text'], created_at=t['created_at'])
                 if self.bdd.searchData(twt) == False:
                     self.bdd.appendData(twt)
-        
-            print(tweets)
+        return
+
+    def putTweets(self):
+        return(self.bdd.getTweetData())
+    
+    def validateTweet(self, tweet):
+        self.bdd.updateData(TweetObj(tweet['id'], text=tweet['text'], created_at=tweet['created_at'], pushed=1))
+        return

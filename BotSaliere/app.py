@@ -11,13 +11,20 @@ class MyClient(discord.Client):
         print("bot logged in as")
         print(self.user.name)
         print("------")
-        chan = client.get_channel(int(ConfigMod().getParameter("channelId", section="DiscordInfo")))
+        self.chan = client.get_channel(int(ConfigMod().getParameter("channelId", section="DiscordInfo")))
         appname = ConfigMod().getParameter("BotName", section="BotInfo")
-        await chan.send("Bonjour je suis connecter en tant que "+appname+", hello !")
+        await self.chan.send("Bonjour je suis connecter en tant que "+appname+", hello !")
         self.mytask.start()
     
-    @tasks.loop(seconds=10)
+    @tasks.loop(seconds=30)
     async def mytask(self):
+        self.en.scrapTweets()
+        twt = self.en.putTweets()
+        for t in twt:
+            if t['pushed'] == 0:
+                self.en.validateTweet(t)
+                await self.chan.send(t['text'])
+
         print("test")
 
     async def on_message(self, message):

@@ -74,6 +74,11 @@ class dataBase:
                     break
             return(y)
 
+    def getUserData(self):
+        return(self.bd['user'])
+    def getTweetData(self):
+        return(self.bd['tweet'])
+
     # prend en argument la structure User ou Tweet pour mettre à jour le fichier de bdd
     # La fonction n'est pas encore tester  
     def updateData(self, object=None):
@@ -89,31 +94,30 @@ class dataBase:
         y = False
 
         if (self.searchData(object) == True):
-            print("updating datas")
             cpt = 0
-            while cpt <= len(self.bd):
-                try:
-                    if self.bd[myType][cpt]['id'] == object.getId():
-                        if myType == 'user':
-                            self.bd[myType][cpt] = {
-                                "id": object.getId(),
-                                "username": object.getUserName(),
-                                "user": object.getName(),
-                                "created_at": object.getCreated_at(),
-                                "description": object.getDesc()
-                                }
-                        elif myType == 'tweet':
-                            self.bd[myType][cpt] = {
-                                "id": object.getId(),
-                                "created_at": object.getCreated_at(),
-                                "description": object.getDesc(),
-                                "pushed": object.getPushed()
-                                }
-                except:
-                    print("Erreur de mise à jour de la base de donnée")
-                    break
+            while cpt < len(self.bd[myType]):
+                print(len(self.bd[myType]))
+                print(cpt)
+                if self.bd[myType][cpt]['id'] == object.getId():
+                    if myType == 'user':
+                        self.bd[myType][cpt] = {
+                            "id": object.getId(),
+                            "username": object.getUserName(),
+                            "user": object.getName(),
+                            "created_at": object.getCreated_at(),
+                            "description": object.getDesc()
+                            }
+                    elif myType == 'tweet':
+                        print("====tweet trouver====")
+                        self.bd[myType][cpt] = {
+                            "id": object.getId(),
+                            "created_at": object.getCreated_at(),
+                            "text": object.getText(),
+                            "pushed": object.getPushed()
+                            }
                 cpt = cpt + 1
-            return(True)    
+            self.dumpData()    
+            return(True)
         else:
             return(False)
 
