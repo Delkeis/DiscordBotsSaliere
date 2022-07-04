@@ -1,0 +1,10 @@
+Commandes Disponibles :
+                            - $hello
+                                        Dit bonjour au bot !
+                            - $help
+                                        Affiche l'aide disponible !
+                            - $register *username*
+                                        en changeant *username* par le @username de twitter 
+                                        vous pouvez inscrire dans la base de donnée le compte 
+                                        associer
+                            

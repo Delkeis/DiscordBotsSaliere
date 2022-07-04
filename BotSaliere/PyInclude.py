@@ -4,5 +4,5 @@ from Config.config import ConfigMod
 from dataModel.tweet import TweetObj
 from dataModel.tweeterUser import TweeterUser
 
-import tweepy
+import discord
 import json

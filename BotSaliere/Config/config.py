@@ -23,7 +23,7 @@ class ConfigMod:
     def openFile(self):
         self.configFile = configparser.ConfigParser()
         self.configFile.read(self.fileName)
-        print("file "+self.fileName+" opened !")
+
 
     def printContent(self):
         print("--content--")
@@ -35,8 +35,3 @@ class ConfigMod:
         except:
             print("paramètre "+ str(param)+" non trouver !")
             return(False)
-
-    #Destructeur de fin d'execution
-    #def __del__(self):
-        #self.configFile.close()
-        #print("close config file--")

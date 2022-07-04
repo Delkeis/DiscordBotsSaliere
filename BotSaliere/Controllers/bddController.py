@@ -37,7 +37,8 @@ class dataBase:
             self.bd['tweet'].append({
                 "id": object.getId(),
                 "created_at": object.getCreated_at(),
-                "text": object.getText()
+                "text": object.getText(),
+                "pushed": object.getPushed()
             })    
         else:
             print("le type de data n'est pas bon")
@@ -47,7 +48,7 @@ class dataBase:
 
 
     #permet de rechercher une entrée dans la base de donnée via l'id
-    def searchData(self, object=None):
+    def searchData(self, object=None, userName=False):
         # on modifie d'abbord la variable myType qui indique
         # si mon object est un user ou un tweet
         if type(object) == type(TweeterUser(0)):
@@ -60,11 +61,18 @@ class dataBase:
         y = False
         # on parcours toute la base de donnée jusqu'à  soit trouver l'entrée
         # soit jusqu'à la fin
-        for i in self.bd.get(myType):
-          if i['id'] == object.getId():
-                y = True
-                break
-        return(y)
+        if userName == False:
+            for i in self.bd.get(myType):
+              if i['id'] == object.getId():
+                    y = True
+                    break
+            return(y)
+        elif userName == True:
+            for i in self.bd.get(myType):
+              if i['username'] == object.getUserName():
+                    y = True
+                    break
+            return(y)
 
     # prend en argument la structure User ou Tweet pour mettre à jour le fichier de bdd
     # La fonction n'est pas encore tester  
@@ -98,7 +106,8 @@ class dataBase:
                             self.bd[myType][cpt] = {
                                 "id": object.getId(),
                                 "created_at": object.getCreated_at(),
-                                "description": object.getDesc()
+                                "description": object.getDesc(),
+                                "pushed": object.getPushed()
                                 }
                 except:
                     print("Erreur de mise à jour de la base de donnée")

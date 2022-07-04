@@ -16,4 +16,3 @@ Principe de fonctionnement : (suceptible d'évoluer)
 DEPENDENCIES : 
   PythonPackage :
     - discord
-    - tweepy

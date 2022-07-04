@@ -3,6 +3,7 @@ class TweetObj:
         self.text = text
         self.created_at = created_at
         self.id = id
+        self.pushed = 0
 
     def getText(self):
         return(self.text)
@@ -10,3 +11,5 @@ class TweetObj:
         return(self.created_at)
     def getId(self):
         return(self.id)
+    def getPushed(self):
+        return(self.pushed)
