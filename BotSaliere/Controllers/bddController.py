@@ -79,6 +79,29 @@ class dataBase:
     def getTweetData(self):
         return(self.bd['tweet'])
 
+    def deleteData(self, object=None):
+        if type(object) == type(TweeterUser(0)):
+            myType = 'user'
+        elif type(object) == type(TweetObj(0)):
+            myType = 'tweet'
+        else:
+            return (False)
+
+        i = 0
+
+        if myType == 'user':
+            while i < len(self.bd[myType]):
+                if self.bd[myType][i]['user'] == object.getUser():
+                    self.bd[myType].pop(i)
+                i = i + 1
+        elif myType == 'tweet':
+            while i < len(self.bd[myType]):
+                if self.bd[myType][i]['id'] == object.getId():
+                    self.bd[myType].pop(i)
+                i = i + 1
+
+            return
+
     # prend en argument la structure User ou Tweet pour mettre à jour le fichier de bdd
     # La fonction n'est pas encore tester  
     def updateData(self, object=None):
@@ -96,8 +119,6 @@ class dataBase:
         if (self.searchData(object) == True):
             cpt = 0
             while cpt < len(self.bd[myType]):
-                print(len(self.bd[myType]))
-                print(cpt)
                 if self.bd[myType][cpt]['id'] == object.getId():
                     if myType == 'user':
                         self.bd[myType][cpt] = {
@@ -108,7 +129,6 @@ class dataBase:
                             "description": object.getDesc()
                             }
                     elif myType == 'tweet':
-                        print("====tweet trouver====")
                         self.bd[myType][cpt] = {
                             "id": object.getId(),
                             "created_at": object.getCreated_at(),
