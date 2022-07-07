@@ -1,8 +1,8 @@
-import re
 from Controllers.twitterApiController import TwitterApi
 from Controllers.bddController import dataBase
-from dataModel.tweet import TweetObj
+from dataModel.subTweet import SubTweetObject
 from dataModel.tweeterUser import TweeterUser
+from dataModel.tweet import TweetObj
 
 class Engine:
 
@@ -38,13 +38,37 @@ class Engine:
             usr = TweeterUser(u['id'], desc=u['description'], name=u['user'], created_at=u['created_at'], username=u['username'])
             tweets = self.twp.tweetsRequest(usr.getId())
             for t in tweets['data']:
-                twt = TweetObj(t['id'], text=t['text'], created_at=t['created_at'])
+                try:
+                    twt = TweetObj(t['id'], text=t['text'], created_at=t['created_at'], referenced_tweets=t['referenced_tweets'][0]['id'])
+                except:
+                    twt = TweetObj(t['id'], text=t['text'], created_at=t['created_at'])
+
                 if self.bdd.searchData(twt) == False:
                     self.bdd.appendData(twt)
         return
 
-    def putTweets(self):
+    def pullTweets(self):
         return(self.bdd.getTweetData())
+
+    def pullSubTweet(self, id) -> SubTweetObject:
+        tmpTweet = SubTweetObject(id)
+
+        if self.bdd.searchData(tmpTweet) == True:
+            tmpTweet = self.bdd.getTweetData(tmpTweet)
+        else: # search in bdd == False
+ #           try:
+    
+            t = self.twp.subTweetsRequest(id)
+            try:
+                t = t['data'][0]
+            except:
+                return(SubTweetObject(0, text="Le tweet n'éxiste plus !"))
+            tmpTweet = SubTweetObject(t['id'], t['text'], t['created_at'], 0)
+            self.bdd.appendData(tmpTweet)
+#            except:
+#                tmpTweet = SubTweetObject(0, text="Le tweet n'éxiste plus !",)
+        return(tmpTweet)
+
     
     def validateTweet(self, tweet):
         self.bdd.updateData(TweetObj(tweet['id'], text=tweet['text'], created_at=tweet['created_at'], pushed=1))

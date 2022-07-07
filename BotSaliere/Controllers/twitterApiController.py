@@ -3,6 +3,10 @@ from Config.config import ConfigMod
 import json
 
 class TwitterApi:
+
+#################################################################
+#################################################################
+
     def __init__(self):
         self.configFile = ConfigMod()
         self.consumer_key=self.configFile.getParameter("twitterApiKey")
@@ -24,11 +28,17 @@ class TwitterApi:
         self.resource_owner_secret = self.fetch_response.get("oauth_token_secret")
         self.getAuth()
 
+#################################################################
+#################################################################
+
     def initUser(self, username="Delkeis"):
         self.fields = "created_at,description"
         self.twtf = "created_at"
         self.users = username
         self.params = {"usernames": self.users, "user.fields": self.fields, "tweet.fields": self.twtf}
+
+#################################################################
+#################################################################
 
     def getAuth(self):
         print("Got OAuth token: %s" % self.resource_owner_key)
@@ -53,7 +63,8 @@ class TwitterApi:
         self.access_token = self.oauth_tokens["oauth_token"]
         self.access_token_secret = self.oauth_tokens["oauth_token_secret"]
 
-
+#################################################################
+#################################################################
 
     def userRequest(self, username=None):
         if username != None:
@@ -77,6 +88,8 @@ class TwitterApi:
         print("Response code: {}".format(self.response.status_code))
         return(self.response.json())
 
+#################################################################
+#################################################################
 
     def tweetsRequest(self, userId):
         userId = str(userId)
@@ -87,11 +100,35 @@ class TwitterApi:
             resource_owner_secret=self.access_token_secret,
         )
 
-        prm = {"tweet.fields": "created_at"}
+        prm = {"tweet.fields": "created_at,referenced_tweets"}
 
         self.response = self.oauth.get(
             "https://api.twitter.com/2/users/{}/tweets".format(userId), params=prm
         )
+        if self.response.status_code != 200:
+            raise Exception(
+                "Request returned an error: {} {}".format(self.response.status_code, self.response.text)
+            )
+        print("Response code: {}".format(self.response.status_code))
+        return(self.response.json())
+
+#################################################################
+#################################################################
+
+    def subTweetsRequest(self, Id):
+        self.oauth = OAuth1Session(
+            self.consumer_key,
+            client_secret=self.consumer_secret,
+            resource_owner_key=self.access_token,
+            resource_owner_secret=self.access_token_secret,
+        )
+
+        prm = {"tweet.fields": "created_at", "ids": str(Id)}
+
+        self.response = self.oauth.get(
+            "https://api.twitter.com/2/tweets", params=prm
+        )
+        print(self.response.json())
         if self.response.status_code != 200:
             raise Exception(
                 "Request returned an error: {} {}".format(self.response.status_code, self.response.text)

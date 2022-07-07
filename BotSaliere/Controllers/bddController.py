@@ -1,5 +1,6 @@
-from dataModel.tweet import TweetObj
+from dataModel.subTweet import SubTweetObject
 from dataModel.tweeterUser import TweeterUser
+from dataModel.tweet import TweetObj
 import json 
 
 class dataBase:
@@ -30,16 +31,24 @@ class dataBase:
                 "id": object.getId(),
                 "username": object.getUserName(),
                 "user": object.getName(),
-                "created_at": object.getCreated_at(),
+                "created_at": object.getCreated_At().replace('T', ' ').replace('.000Z', ''),
                 "description": object.getDesc()
             })
         elif type(object) == type(TweetObj(0)):
             self.bd['tweet'].append({
                 "id": object.getId(),
-                "created_at": object.getCreated_at(),
+                "created_at": object.getCreated_At().replace('T', ' ').replace('.000Z', ''),
+                "text": object.getText(),
+                "referenced_tweets": object.getReferenced_Tweets(),
+                "pushed": object.getPushed()
+            })
+        elif type(object) == type(SubTweetObject(0)):
+            self.bd['subtweet'].append({
+                "id": object.getId(),
+                "created_at": object.getCreated_At().replace('T', ' ').replace('.000Z', ''),
                 "text": object.getText(),
                 "pushed": object.getPushed()
-            })    
+            })      
         else:
             print("le type de data n'est pas bon")
             return(False)
@@ -55,6 +64,8 @@ class dataBase:
             myType = 'user'
         elif type(object) == type(TweetObj(0)):
             myType = 'tweet'
+        elif type(object) == type(SubTweetObject(0)):
+            myType = 'subtweet'
         else:
             return (False)
 
@@ -76,8 +87,26 @@ class dataBase:
 
     def getUserData(self):
         return(self.bd['user'])
-    def getTweetData(self):
-        return(self.bd['tweet'])
+
+    def getTweetData(self, object=None):
+        if  object == None:
+            return(self.bd['tweet'])
+
+        elif type(object) == type(TweetObj(0)):
+            myType = 'tweet'
+        elif type(object) == type(SubTweetObject(0)):
+            myType = 'subtweet'
+
+        for t in self.bd[myType]:
+            if t['id'] == object.getId():
+                object.setText(t['text'])
+                object.setCreated_At(t['created_at'])
+                object.setPushed(t['pushed'])
+                if myType == 'tweet':
+                    object.setReferenced_Tweets(t['referenced_tweets'])
+                return(object)
+
+
 
     def deleteData(self, object=None):
         if type(object) == type(TweeterUser(0)):
@@ -125,14 +154,15 @@ class dataBase:
                             "id": object.getId(),
                             "username": object.getUserName(),
                             "user": object.getName(),
-                            "created_at": object.getCreated_at(),
+                            "created_at": object.getCreated_At(),
                             "description": object.getDesc()
                             }
                     elif myType == 'tweet':
                         self.bd[myType][cpt] = {
                             "id": object.getId(),
-                            "created_at": object.getCreated_at(),
+                            "created_at": object.getCreated_At(),
                             "text": object.getText(),
+                            "referenced_tweets": object.getReferenced_Tweets(),
                             "pushed": object.getPushed()
                             }
                 cpt = cpt + 1

@@ -19,13 +19,33 @@ class MyClient(discord.Client):
     @tasks.loop(seconds=30)
     async def mytask(self):
         self.en.scrapTweets()
-        twt = self.en.putTweets()
+        twt = self.en.pullTweets()
         for t in twt:
-            if t['pushed'] == 0:
-                self.en.validateTweet(t)
-                await self.chan.send(t['text'])
 
-        print("test")
+            if t['pushed'] == 0:
+                try:
+                    refT = t['referenced_tweets']
+                except:
+                    refT = None
+
+
+
+                if refT != None:
+                    # récupérer les tweets
+                    st = self.en.pullSubTweet(t['referenced_tweets'])
+                    print(vars(st))
+                    if st.getId() == 0:
+                        subSep = "\n---------------\n"
+                        subTweet = subSep+st.getText()+subSep
+                    else:
+                        subTweet = "\n"
+                else:
+                    subTweet = "\n"
+                sep = "\n==============\n"
+                string = sep+t['text']+subTweet+t['created_at']+sep
+                await self.chan.send(string)
+                self.en.validateTweet(t)
+        print("scrap")
 
     async def on_message(self, message):
         #print(message.content.startswith())

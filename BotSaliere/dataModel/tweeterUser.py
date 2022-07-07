@@ -1,4 +1,4 @@
-from BotSaliere.dataModel.Obj import obj
+from dataModel.Obj import obj
 
 class TweeterUser(obj):
     def __init__(self, id, desc=None, name=None, created_at=None, username=None):

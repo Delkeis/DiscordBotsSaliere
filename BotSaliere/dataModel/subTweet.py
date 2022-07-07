@@ -1,11 +1,12 @@
-from BotSaliere.dataModel.tweet import TweetObj
+from dataModel.tweet import TweetObj
 
 class SubTweetObject(TweetObj):
-    def __init__(self, id, text=None, created_at=None, pushed=0, subTweet=True):
+    def __init__(self, id, text=None, created_at=None, pushed=0, referenced_tweets=None, subTweet=True):
         self.setText(text)
-        self.setCreated_at(created_at)
+        self.setCreated_At(created_at)
         self.setPushed(pushed)
         self.setId(id)
+        self.setReferenced_Tweets(referenced_tweets)
         self.subTweet = subTweet
 
     def getSubTweet(self):
