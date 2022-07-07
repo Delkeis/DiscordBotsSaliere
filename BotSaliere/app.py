@@ -27,14 +27,10 @@ class MyClient(discord.Client):
                     refT = t['referenced_tweets']
                 except:
                     refT = None
-
-
-
                 if refT != None:
                     # récupérer les tweets
                     st = self.en.pullSubTweet(t['referenced_tweets'])
-                    print(vars(st))
-                    if st.getId() == 0:
+                    if st.getId() != 0:
                         subSep = "\n---------------\n"
                         subTweet = subSep+st.getText()+subSep
                     else:
@@ -45,7 +41,6 @@ class MyClient(discord.Client):
                 string = sep+t['text']+subTweet+t['created_at']+sep
                 await self.chan.send(string)
                 self.en.validateTweet(t)
-        print("scrap")
 
     async def on_message(self, message):
         #print(message.content.startswith())

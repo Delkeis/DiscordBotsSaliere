@@ -128,7 +128,6 @@ class TwitterApi:
         self.response = self.oauth.get(
             "https://api.twitter.com/2/tweets", params=prm
         )
-        print(self.response.json())
         if self.response.status_code != 200:
             raise Exception(
                 "Request returned an error: {} {}".format(self.response.status_code, self.response.text)
