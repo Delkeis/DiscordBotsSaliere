@@ -1,5 +1,8 @@
 
-
+########################################
+#   obj est la classe/structure de données 
+#   parents des classe user et tweet
+########################################
 class obj:
     def __init__(self, id, created_at=None):
         self.id = id

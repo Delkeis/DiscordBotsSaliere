@@ -1,17 +1,16 @@
 from requests_oauthlib import OAuth1Session
 from Config.config import ConfigMod
-import json
 
+#################################################################
+#   la classe twitterApi regroupe les outils pour fais des requetes 
+#   et autres interaction avec l'api Twitter 
+#################################################################
 class TwitterApi:
-
-#################################################################
-#################################################################
 
     def __init__(self):
         self.configFile = ConfigMod()
         self.consumer_key=self.configFile.getParameter("twitterApiKey")
         self.consumer_secret=self.configFile.getParameter("twitterApiSecretKey")
-
         self.initUser()
 
         # Get request token
@@ -28,18 +27,20 @@ class TwitterApi:
         self.resource_owner_secret = self.fetch_response.get("oauth_token_secret")
         self.getAuth()
 
-#################################################################
-#################################################################
-
-    def initUser(self, username="Delkeis"):
+    #################################################################
+    #   la méthode initUser sert à initialiser les paramètres 
+    #   des requêtes users
+    #################################################################
+    def initUser(self, username: str = "Delkeis") -> None:
         self.fields = "created_at,description"
         self.twtf = "created_at"
         self.users = username
         self.params = {"usernames": self.users, "user.fields": self.fields, "tweet.fields": self.twtf}
 
-#################################################################
-#################################################################
-
+    #################################################################
+    #   la méthode getAuth sert à faire la reqête de demande  
+    #   d'acces à l'api twitter 
+    #################################################################
     def getAuth(self):
         print("Got OAuth token: %s" % self.resource_owner_key)
 
@@ -63,9 +64,10 @@ class TwitterApi:
         self.access_token = self.oauth_tokens["oauth_token"]
         self.access_token_secret = self.oauth_tokens["oauth_token_secret"]
 
-#################################################################
-#################################################################
-
+    #################################################################
+    #   la méthode userRequest sert à faire la requête pour les utilisateur  
+    #   à partir du username 
+    #################################################################
     def userRequest(self, username: str=None):
         if username != None:
             self.initUser(username)
@@ -88,9 +90,10 @@ class TwitterApi:
         print("Response code: {}".format(self.response.status_code))
         return(self.response.json())
 
-#################################################################
-#################################################################
-
+    #################################################################
+    #   la méthode userRequestById sert à faire une requête du user via 
+    #   son Id Twitter 
+    #################################################################
     def userRequestById(self, id: int):
 
         self.oauth = OAuth1Session(
@@ -109,10 +112,11 @@ class TwitterApi:
             )
         print("Response code: {}".format(self.response.status_code))
         return(self.response.json())
-        
-#################################################################
-#################################################################
 
+    #################################################################
+    #   ma méthode tweetsRequest sert à faire les requêtes des tweets 
+    #   via l'userId Twitter
+    #################################################################
     def tweetsRequest(self, userId):
         userId = str(userId)
         self.oauth = OAuth1Session(
@@ -126,29 +130,6 @@ class TwitterApi:
 
         self.response = self.oauth.get(
             "https://api.twitter.com/2/users/{}/tweets".format(userId), params=prm
-        )
-        if self.response.status_code != 200:
-            raise Exception(
-                "Request returned an error: {} {}".format(self.response.status_code, self.response.text)
-            )
-        print("Response code: {}".format(self.response.status_code))
-        return(self.response.json())
-
-#################################################################
-#################################################################
-
-    def subTweetsRequest(self, Id):
-        self.oauth = OAuth1Session(
-            self.consumer_key,
-            client_secret=self.consumer_secret,
-            resource_owner_key=self.access_token,
-            resource_owner_secret=self.access_token_secret,
-        )
-
-        prm = {"tweet.fields": "created_at", "ids": str(Id)}
-
-        self.response = self.oauth.get(
-            "https://api.twitter.com/2/tweets", params=prm
         )
         if self.response.status_code != 200:
             raise Exception(

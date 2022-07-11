@@ -1,7 +1,6 @@
 from Controllers.twitterApiController import TwitterApi
 from Controllers.bddController import dataBase
-from dataModel.subTweet import SubTweetObject
-from dataModel.tweeterUser import TweeterUser
+from dataModel.twitterUser import TwitterUser
 from dataModel.tweet import TweetObj
 
 
@@ -42,11 +41,11 @@ class Engine:
             param = param.replace('@', '')
 
         # on vérifie que l'utilisateur n'existe pas déjà dans la base
-        if self.bdd.searchData(TweeterUser(0, username=param), userName=True) == False:
+        if self.bdd.searchData(TwitterUser(0, username=param), userName=True) == False:
             # on requete chez twitter le nom de l'utilisateur
             req = self.twp.userRequest(param)
             try:
-                usr = TweeterUser(req['data'][0]['id'], desc=req['data'][0]['description'], name=req['data'][0]['name'],
+                usr = TwitterUser(req['data'][0]['id'], desc=req['data'][0]['description'], name=req['data'][0]['name'],
                                     created_at=req['data'][0]['created_at'], username=req['data'][0]['username'])
                 self.bdd.appendData(usr)
             except:
@@ -67,50 +66,43 @@ class Engine:
     ######################################################
     #   la méthode scrapTweets est une interface qui demande à la classe dataBase 
     #   de récupérer les infos de tous les users de la base de donnée
-    #   
     ######################################################
     def scrapTweets(self):
         users = self.bdd.getUserData()
 
+        # on parcours tous les utilisateurs de la bdd
         for u in users:
-            usr = TweeterUser(u['id'], desc=u['description'], name=u['user'], created_at=u['created_at'], username=u['username'])
+            usr = TwitterUser(u['id'], desc=u['description'], name=u['user'], created_at=u['created_at'], username=u['username'])
             tweets = self.twp.tweetsRequest(usr.getId())
+
+            # on parcours tous les tweets de l'utilisateur u
             for t in tweets['data']:
+
                 if t['text'].find(self.modiese) != -1:
+                    # on utilise un  try except pour controller si le tweet contiens une référence à un autre tweet
                     try:
-                        twt = TweetObj(t['id'], text=t['text'], created_at=t['created_at'], referenced_tweets=t['referenced_tweets'][0]['id'], author_id=t['author_id'], type=t['referenced_tweets'][0]['type'])
+                        twt = TweetObj(t['id'], text=t['text'], created_at=t['created_at'], referenced_tweets=t['referenced_tweets'][0]['id'],
+                            author_id=t['author_id'], type=t['referenced_tweets'][0]['type'])
                     except:
                         twt = TweetObj(t['id'], text=t['text'], created_at=t['created_at'], author_id=t['author_id'])
+
+                    # on verifie si il n'est pas déja dans la base pour le réinscrire
                     if self.bdd.searchData(twt) == False:
                         self.bdd.appendData(twt)
         return
 
+    ########################################################
+    #   la méthode pullTweets sert d'interface pour récupérer les tweets
+    #   depuis la base de donnée
+    ########################################################
     def pullTweets(self):
         return(self.bdd.getTweetData())
-
-    def pullSubTweet(self, id) -> SubTweetObject:
-        tmpTweet = SubTweetObject(id)
-
-        if self.bdd.searchData(tmpTweet) == True:
-            tmpTweet = self.bdd.getTweetData(tmpTweet)
-        else: # search in bdd == False
- #           try:
     
-            t = self.twp.subTweetsRequest(id)
-            try:
-                t = t['data'][0]
-            except:
-                return(SubTweetObject(0, text="Le tweet n'éxiste plus !"))
-            tmpTweet = SubTweetObject(t['id'], t['text'], t['created_at'], 0)
-            self.bdd.appendData(tmpTweet)
-#            except:
-#                tmpTweet = SubTweetObject(0, text="Le tweet n'éxiste plus !",)
-        return(tmpTweet)
-
-    
+    ########################################################
+    #   la méthode validateTweet est une interface avec la bdd 
+    #   pour mettre à jour la variable pushed dans la base
+    ########################################################
     def validateTweet(self, tweet):
         self.bdd.updateData(TweetObj(tweet['id'], text=tweet['text'], created_at=tweet['created_at'], pushed=1, author_id=tweet['author_id'],
         referenced_tweets=tweet['referenced_tweets'], type=tweet['type']))
-        # except:
-        #     self.bdd.updateData(TweetObj(tweet['id'], text=tweet['text'], created_at=tweet['created_at'], pushed=1, author_id=tweet['author_id']))
         return

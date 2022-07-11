@@ -1,17 +1,10 @@
 from dataModel.Obj import obj
-import enum
 
-class TweetType(enum.Enum):
-    reply = 'replied_to'
-    retweet = 'retweeted'
-    tweet = 'tweeted'
-
+############################### 
+#   la classe TweetObj est une structure de 
+#   donnée qui hérite de obj
+###############################
 class TweetObj(obj):
-    ##
-    #   Erited :    - getId()
-    #               - setId(Int)
-    #               - obj.Id
-    ##
     def __init__(self, id, text:str=None, created_at:str=None, pushed=0, referenced_tweets=None, author_id=0, type:str='tweeted') -> None:
         self.text = text
         self.pushed = pushed

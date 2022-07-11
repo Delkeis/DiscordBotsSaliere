@@ -1,6 +1,5 @@
-from Controllers.twitterApiController import TwitterApi
 from appEngine.engine import Engine
-from PyInclude import *
+from PyInclude import discord, ConfigMod
 from discord.ext import tasks
 
 ################################################
@@ -80,7 +79,7 @@ class MyClient(discord.Client):
             await message.channel.send("le HashTag à été modifier par : {}".format(myCommand))
         elif message.content.startswith('$hashtag'):
             await message.channel.send("le hashTag est : {}".format(self.en.getHashTag()))
-
+###############################################
 
 client = MyClient()
 # client.run est hériter de discord.client et prend en paramètre le token de connexion

@@ -2,7 +2,7 @@ Commandes Disponibles :
                             - $hello
                                         Dit bonjour au bot !
 
-                                        
+
                             - $help
                                         Affiche l'aide disponible !
 
@@ -24,3 +24,8 @@ Commandes Disponibles :
                             - $hashtag
                                         permet de voir le mot utiliser comme critère de séléction
                                         par le bot 
+
+Description:
+    Toutes les 10 minutes le bot va regarder pour tous les comptes inscrits
+    si un de ses tweets contiens le hastag de référence
+    si c'est le cas il l'affiche dans le discord

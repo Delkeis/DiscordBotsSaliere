@@ -16,3 +16,9 @@ Principe de fonctionnement : (suceptible d'évoluer)
 DEPENDENCIES : 
   PythonPackage :
     - discord
+
+
+
+AXE D'AMELIORATION (proposition libre !):
+
+- la méthode dataBase.updatedata() fait une double verification pour trouver la bonne entrée (pas optimisé)
