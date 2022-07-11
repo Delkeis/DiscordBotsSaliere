@@ -15,32 +15,27 @@ class MyClient(discord.Client):
         appname = ConfigMod().getParameter("BotName", section="BotInfo")
         await self.chan.send("Bonjour je suis connecter en tant que "+appname+", hello !")
         self.mytask.start()
-    
+
+
+
+
     @tasks.loop(seconds=30)
     async def mytask(self):
+
         self.en.scrapTweets()
         twt = self.en.pullTweets()
         for t in twt:
-
             if t['pushed'] == 0:
-                try:
-                    refT = t['referenced_tweets']
-                except:
-                    refT = None
-                if refT != None:
-                    # récupérer les tweets
-                    st = self.en.pullSubTweet(t['referenced_tweets'])
-                    if st.getId() != 0:
-                        subSep = "\n---------------\n"
-                        subTweet = subSep+st.getText()+subSep
-                    else:
-                        subTweet = "\n"
-                else:
-                    subTweet = "\n"
-                sep = "\n==============\n"
-                string = sep+t['text']+subTweet+t['created_at']+sep
-                await self.chan.send(string)
+                usrName = self.en.getUserNameById(id=int(t['author_id']))
+                uri = "https://twitter.com/{}/status/{}".format(usrName, t['id'])
+                mess = "Tweet from {} :".format(usrName)
+                await self.chan.send(mess)
+                await self.chan.send(uri)
                 self.en.validateTweet(t)
+
+
+
+
 
     async def on_message(self, message):
         #print(message.content.startswith())

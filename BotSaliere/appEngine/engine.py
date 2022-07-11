@@ -12,7 +12,7 @@ class Engine:
 
 
 
-    def register(self, param=None):
+    def register(self, param=None) -> str: # param = string de username/@username
         if(param == None):
             return False
 
@@ -31,6 +31,10 @@ class Engine:
         else:
             return("l'utilisateur existe déjà !")
 
+    def getUserNameById(self, id: int = 0) -> str:
+        user = self.twp.userRequestById(id)['data']
+        return(user['username'])
+
     def scrapTweets(self):
         users = self.bdd.getUserData()
 
@@ -39,9 +43,9 @@ class Engine:
             tweets = self.twp.tweetsRequest(usr.getId())
             for t in tweets['data']:
                 try:
-                    twt = TweetObj(t['id'], text=t['text'], created_at=t['created_at'], referenced_tweets=t['referenced_tweets'][0]['id'])
+                    twt = TweetObj(t['id'], text=t['text'], created_at=t['created_at'], referenced_tweets=t['referenced_tweets'][0]['id'], author_id=t['author_id'])
                 except:
-                    twt = TweetObj(t['id'], text=t['text'], created_at=t['created_at'])
+                    twt = TweetObj(t['id'], text=t['text'], created_at=t['created_at'], author_id=t['author_id'])
 
                 if self.bdd.searchData(twt) == False:
                     self.bdd.appendData(twt)
@@ -71,5 +75,5 @@ class Engine:
 
     
     def validateTweet(self, tweet):
-        self.bdd.updateData(TweetObj(tweet['id'], text=tweet['text'], created_at=tweet['created_at'], pushed=1))
+        self.bdd.updateData(TweetObj(tweet['id'], text=tweet['text'], created_at=tweet['created_at'], pushed=1, author_id=tweet['author_id']))
         return
