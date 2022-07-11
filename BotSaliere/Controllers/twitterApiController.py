@@ -66,7 +66,7 @@ class TwitterApi:
 #################################################################
 #################################################################
 
-    def userRequest(self, username=None):
+    def userRequest(self, username: str=None):
         if username != None:
             self.initUser(username)
         # Make the request
@@ -91,6 +91,28 @@ class TwitterApi:
 #################################################################
 #################################################################
 
+    def userRequestById(self, id: int):
+
+        self.oauth = OAuth1Session(
+            self.consumer_key,
+            client_secret=self.consumer_secret,
+            resource_owner_key=self.access_token,
+            resource_owner_secret=self.access_token_secret,
+        )
+
+        self.response = self.oauth.get(
+            "https://api.twitter.com/2/users/{}".format(id)
+        )
+        if self.response.status_code != 200:
+            raise Exception(
+                "Request returned an error: {} {}".format(self.response.status_code, self.response.text)
+            )
+        print("Response code: {}".format(self.response.status_code))
+        return(self.response.json())
+        
+#################################################################
+#################################################################
+
     def tweetsRequest(self, userId):
         userId = str(userId)
         self.oauth = OAuth1Session(
@@ -100,7 +122,7 @@ class TwitterApi:
             resource_owner_secret=self.access_token_secret,
         )
 
-        prm = {"tweet.fields": "created_at,referenced_tweets"}
+        prm = {"tweet.fields": "created_at,referenced_tweets", "expansions": "author_id"}
 
         self.response = self.oauth.get(
             "https://api.twitter.com/2/users/{}/tweets".format(userId), params=prm
