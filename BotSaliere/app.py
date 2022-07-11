@@ -29,7 +29,7 @@ class MyClient(discord.Client):
     #   la tâche myTask est une tâche asynchrone (qui est exécuter en permanance)
     #   qui consiste à récupérer les données et les envoyer sur le channel discord 
     #########################################################
-    @tasks.loop(seconds=30)
+    @tasks.loop(seconds=600)
     async def mytask(self):
 
         self.en.scrapTweets()
