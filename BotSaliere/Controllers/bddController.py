@@ -40,16 +40,10 @@ class dataBase:
                 "created_at": object.getCreated_At().replace('T', ' ').replace('.000Z', ''),
                 "text": object.getText(),
                 "referenced_tweets": object.getReferenced_Tweets(),
+                "type": object.getType(),
                 "author_id": object.getAuthor_Id(),
                 "pushed": object.getPushed()
              })
-        # elif type(object) == type(SubTweetObject(0)):
-        #     self.bd['subtweet'].append({
-        #         "id": object.getId(),
-        #         "created_at": object.getCreated_At().replace('T', ' ').replace('.000Z', ''),
-        #         "text": object.getText(),
-        #         "pushed": object.getPushed()
-        #     })      
         else:
             print("le type de data n'est pas bon")
             return(False)
@@ -95,8 +89,6 @@ class dataBase:
 
         elif type(object) == type(TweetObj(0)):
             myType = 'tweet'
-        # elif type(object) == type(SubTweetObject(0)):
-        #     myType = 'subtweet'
 
         for t in self.bd[myType]:
             if t['id'] == object.getId():
@@ -106,6 +98,7 @@ class dataBase:
                 object.setAuthor_Id(t['author_id'])
                 if myType == 'tweet':
                     object.setReferenced_Tweets(t['referenced_tweets'])
+                    object.setType(t['type'])
                 return(object)
 
 
@@ -138,13 +131,15 @@ class dataBase:
     def updateData(self, object=None):
         # on modifie d'abbord la variable myType qui indique
         # si mon object est un user ou un tweet
+        if object == None:
+            return
         if type(object) == type(TweeterUser(0)):
             myType = 'user'
         elif type(object) == type(TweetObj(0)):
             myType = 'tweet'
-        elif type(object) == type(SubTweetObject(0)):
-            myType = 'subtweet'
-            return False
+        # elif type(object) == type(SubTweetObject(0)):
+        #     myType = 'subtweet'
+        #     return False
         else:
             return (False)
 
@@ -152,7 +147,6 @@ class dataBase:
 
         if (self.searchData(object) == True):
             cpt = 0
-            print(len(self.bd[myType]))
             while cpt < len(self.bd[myType]):
                 if self.bd[myType][cpt]['id'] == object.getId():
                     if myType == 'user':
@@ -163,13 +157,13 @@ class dataBase:
                             "created_at": object.getCreated_At(),
                             "description": object.getDesc()
                             }
-                    elif myType == 'tweet' or myType == 'subtweet':
-                        
+                    elif myType == 'tweet':# or myType == 'subtweet':
                         self.bd[myType][cpt] = {
                             "id": object.getId(),
                             "created_at": object.getCreated_At(),
                             "text": object.getText(),
                             "referenced_tweets": object.getReferenced_Tweets(),
+                            "type": object.getType(),
                             "author_id": object.getAuthor_Id(),
                             "pushed": object.getPushed()
                             }
@@ -178,6 +172,13 @@ class dataBase:
             return(True)
         else:
             return(False)
+
+    def get_setInfos(self, set=False, nfo:str=None) -> str:
+        if set == False:
+            return(self.bd["info"][0]["hashtag"])
+        else:
+            self.bd["info"][0] = {"hashtag": nfo}
+            self.dumpData()
 
     #fixe les nouvelles entrées dans la base de donnée
     def dumpData(self):

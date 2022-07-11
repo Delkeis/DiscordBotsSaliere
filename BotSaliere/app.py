@@ -4,12 +4,16 @@ from PyInclude import *
 from discord.ext import tasks
 
 ################################################
-#
-#
+# My client est une class enfant de discord Client 
+#   elle est le moteur du bot discord 
 ################################################
 class MyClient(discord.Client):
     en = Engine()
 
+    ########################################################
+    #   la méthode on_ready est appeler au démarrage de la classe au même titre que __init__()
+    #   on initialise le channel sur lequel parler et on lance la tâche asynchrone myTask()
+    ########################################################
     async def on_ready(self):
         print("bot logged in as")
         print(self.user.name)
@@ -21,7 +25,10 @@ class MyClient(discord.Client):
 
 
 
-
+    #########################################################
+    #   la tâche myTask est une tâche asynchrone (qui est exécuter en permanance)
+    #   qui consiste à récupérer les données et les envoyer sur le channel discord 
+    #########################################################
     @tasks.loop(seconds=30)
     async def mytask(self):
 
@@ -29,8 +36,12 @@ class MyClient(discord.Client):
         twt = self.en.pullTweets()
         for t in twt:
             if t['pushed'] == 0:
+                if t['type'] != 'tweeted':
+                    id = t['referenced_tweets']
+                else:
+                    id = t['id']
                 usrName = self.en.getUserNameById(id=int(t['author_id']))
-                uri = "https://twitter.com/{}/status/{}".format(usrName, t['id'])
+                uri = "https://twitter.com/{}/status/{}".format(usrName, id)
                 mess = "Tweet from {} :".format(usrName)
                 await self.chan.send(mess)
                 await self.chan.send(uri)
@@ -39,15 +50,18 @@ class MyClient(discord.Client):
 
 
 
-
+    ########################################################
+    #   la méthode on_mesage est une méthode qui est appeler à chaque message sur le discord (tous les channels)
+    #   on obtiens le contenu du message dans la variable message 
+    ########################################################
     async def on_message(self, message):
-        #print(message.content.startswith())
-        #match message.content:
-        #    case startswith("!start"):
-        #        print("works-----------")
 
+        # je vérifie que le bot ne lise pas ses propre messages 
         if message.author.id == self.user.id:
             return
+
+        
+        # on vérifie grâce à startswith('') les mots clé entré par l'utilisateur
         if message.content.startswith('$hello'):
             await message.channel.send('Hello {0.author.mention}'.format(message))
         elif message.content.startswith('$help'):
@@ -60,6 +74,14 @@ class MyClient(discord.Client):
             if rsp == False:
                 rsp = "Erreur : L'utilisateur @{0} n'est pas trouvable !".format(myCommand)
             await message.channel.send(rsp)
+        elif message.content.startswith('$sethashtag'):
+            myCommand = message.content.replace('$sethashtag ', '')
+            self.en.setHashTag(myCommand)
+            await message.channel.send("le HashTag à été modifier par : {}".format(myCommand))
+        elif message.content.startswith('$hashtag'):
+            await message.channel.send("le hashTag est : {}".format(self.en.getHashTag()))
+
 
 client = MyClient()
-client.run(ConfigMod().getParameter("discordToken"))# my_config["DISCORD_TOKEN"])
+# client.run est hériter de discord.client et prend en paramètre le token de connexion
+client.run(ConfigMod().getParameter("discordToken"))
