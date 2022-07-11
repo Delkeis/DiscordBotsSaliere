@@ -1,0 +1,31 @@
+Commandes Disponibles :
+                            - $hello
+                                        Dit bonjour au bot !
+
+
+                            - $help
+                                        Affiche l'aide disponible !
+
+
+                            - $register *username*
+                                        en changeant *username* par le @username de twitter 
+                                        vous pouvez inscrire dans la base de donnée le compte 
+                                        associer
+
+
+                            - $sethashtag #*leNomAChanger*
+                                        en changeant *leNomAChanger* par um mot du type #botsalère
+                                        on peut changer le hastag que le bot vas séléctionner
+                                        comme critère d'affichage 
+                                        NOTE : - il faut mettre #botsaliere et pas botsaliere  
+                                               - le bot est caps sesitive
+
+
+                            - $hashtag
+                                        permet de voir le mot utiliser comme critère de séléction
+                                        par le bot 
+
+Description:
+    Toutes les 10 minutes le bot va regarder pour tous les comptes inscrits
+    si un de ses tweets contiens le hastag de référence
+    si c'est le cas il l'affiche dans le discord
