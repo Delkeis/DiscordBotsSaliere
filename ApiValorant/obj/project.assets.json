@@ -230,11 +230,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jmbernard\\Documents\\PGPerso\\DiscordBotsSaliere\\DiscordBotsSaliere.csproj",
+      "projectUniqueName": "C:\\Users\\jmbernard\\Documents\\PGPerso\\DiscordBotsSaliere\\ApiValorant\\DiscordBotsSaliere.csproj",
       "projectName": "DiscordBotsSaliere",
-      "projectPath": "C:\\Users\\jmbernard\\Documents\\PGPerso\\DiscordBotsSaliere\\DiscordBotsSaliere.csproj",
+      "projectPath": "C:\\Users\\jmbernard\\Documents\\PGPerso\\DiscordBotsSaliere\\ApiValorant\\DiscordBotsSaliere.csproj",
       "packagesPath": "C:\\Users\\jmbernard\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jmbernard\\Documents\\PGPerso\\DiscordBotsSaliere\\obj\\",
+      "outputPath": "C:\\Users\\jmbernard\\Documents\\PGPerso\\DiscordBotsSaliere\\ApiValorant\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

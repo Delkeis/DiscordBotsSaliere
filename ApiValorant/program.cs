@@ -1,3 +1,7 @@
+using ValorantApi.Models;
+
+//namespace ValorantApi;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

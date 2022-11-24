@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4a+bLhwS8rHf4WNy0pawsoze3LxVbhPVUMFD5+wde3Zyk5Y33VfT/IRzcLkLSoJs2FAQcyfWdMtbFC0mX2tjzg==",
+  "dgSpecHash": "G800LwgEumWAIegFyuyuyt8+Ce5JOuywaEJa1tMcxTYOuJ1GZ2D//TFrpiQ+jXFinFnFFQXB6cM4eYCioommZw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jmbernard\\Documents\\PGPerso\\DiscordBotsSaliere\\DiscordBotsSaliere.csproj",
+  "projectFilePath": "C:\\Users\\jmbernard\\Documents\\PGPerso\\DiscordBotsSaliere\\ApiValorant\\DiscordBotsSaliere.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jmbernard\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\jmbernard\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
