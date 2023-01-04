@@ -1,0 +1,5 @@
+C:\Users\je224\Documents\repository\DiscordBotsSaliere\SaliereGpt\obj\Debug\net7.0\SaliereGpt.csproj.AssemblyReference.cache
+C:\Users\je224\Documents\repository\DiscordBotsSaliere\SaliereGpt\obj\Debug\net7.0\SaliereGpt.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\je224\Documents\repository\DiscordBotsSaliere\SaliereGpt\obj\Debug\net7.0\SaliereGpt.AssemblyInfoInputs.cache
+C:\Users\je224\Documents\repository\DiscordBotsSaliere\SaliereGpt\obj\Debug\net7.0\SaliereGpt.AssemblyInfo.cs
+C:\Users\je224\Documents\repository\DiscordBotsSaliere\SaliereGpt\obj\Debug\net7.0\SaliereGpt.csproj.CoreCompileInputs.cache
