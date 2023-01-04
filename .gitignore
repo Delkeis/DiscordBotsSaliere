@@ -7,6 +7,7 @@ __pycache__/
 *.env
 *.ini
 *.code-workspace
+*.json
 
 #temporary database 
 tmp

@@ -50,6 +50,10 @@
               "target": "Package",
               "version": "[4.3.0, )"
             },
+            "Discord.Net": {
+              "target": "Package",
+              "version": "[3.9.0, )"
+            },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
               "version": "[7.0.0, )"
@@ -61,6 +65,10 @@
             "Microsoft.Extensions.Configuration.Json": {
               "target": "Package",
               "version": "[7.0.0, )"
+            },
+            "OpenAI": {
+              "target": "Package",
+              "version": "[1.2.0, )"
             }
           },
           "imports": [

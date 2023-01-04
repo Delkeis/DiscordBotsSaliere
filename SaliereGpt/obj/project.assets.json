@@ -15,6 +15,123 @@
           }
         }
       },
+      "Discord.Net/3.9.0": {
+        "type": "package",
+        "dependencies": {
+          "Discord.Net.Commands": "3.9.0",
+          "Discord.Net.Core": "3.9.0",
+          "Discord.Net.Interactions": "3.9.0",
+          "Discord.Net.Rest": "3.9.0",
+          "Discord.Net.WebSocket": "3.9.0",
+          "Discord.Net.Webhook": "3.9.0"
+        }
+      },
+      "Discord.Net.Commands/3.9.0": {
+        "type": "package",
+        "dependencies": {
+          "Discord.Net.Core": "3.9.0"
+        },
+        "compile": {
+          "lib/net6.0/Discord.Net.Commands.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Discord.Net.Commands.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Discord.Net.Core/3.9.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1",
+          "System.Collections.Immutable": "5.0.0",
+          "System.Interactive.Async": "5.0.0",
+          "System.ValueTuple": "4.5.0"
+        },
+        "compile": {
+          "lib/net6.0/Discord.Net.Core.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Discord.Net.Core.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Discord.Net.Interactions/3.9.0": {
+        "type": "package",
+        "dependencies": {
+          "Discord.Net.Core": "3.9.0",
+          "Discord.Net.Rest": "3.9.0",
+          "Discord.Net.WebSocket": "3.9.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "5.0.0",
+          "System.Collections.Immutable": "5.0.0",
+          "System.Reactive": "5.0.0"
+        },
+        "compile": {
+          "lib/net6.0/Discord.Net.Interactions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Discord.Net.Interactions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Discord.Net.Rest/3.9.0": {
+        "type": "package",
+        "dependencies": {
+          "Discord.Net.Core": "3.9.0"
+        },
+        "compile": {
+          "lib/net6.0/Discord.Net.Rest.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Discord.Net.Rest.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Discord.Net.Webhook/3.9.0": {
+        "type": "package",
+        "dependencies": {
+          "Discord.Net.Core": "3.9.0",
+          "Discord.Net.Rest": "3.9.0"
+        },
+        "compile": {
+          "lib/net6.0/Discord.Net.Webhook.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Discord.Net.Webhook.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Discord.Net.WebSocket/3.9.0": {
+        "type": "package",
+        "dependencies": {
+          "Discord.Net.Core": "3.9.0",
+          "Discord.Net.Rest": "3.9.0"
+        },
+        "compile": {
+          "lib/net6.0/Discord.Net.WebSocket.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Discord.Net.WebSocket.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "DSharpPlus/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -88,6 +205,17 @@
         },
         "runtime": {
           "lib/netcoreapp2.1/Emzi0767.Common.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll": {
             "related": ".xml"
           }
         }
@@ -352,6 +480,19 @@
           "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
+        }
+      },
+      "OpenAI/1.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl.AsyncInterfaces": "1.1.1",
+          "Newtonsoft.Json": "12.0.3"
+        },
+        "compile": {
+          "lib/netstandard2.0/OpenAI_API.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/OpenAI_API.dll": {}
         }
       },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {
@@ -673,6 +814,22 @@
           }
         }
       },
+      "System.Interactive.Async/5.0.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Linq.Async": "5.0.0"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/System.Interactive.Async.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/System.Interactive.Async.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "System.IO/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -736,6 +893,19 @@
         },
         "runtime": {
           "lib/netstandard1.6/System.Linq.dll": {}
+        }
+      },
+      "System.Linq.Async/5.0.0": {
+        "type": "package",
+        "compile": {
+          "ref/netcoreapp3.1/System.Linq.Async.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/System.Linq.Async.dll": {
+            "related": ".xml"
+          }
         }
       },
       "System.Memory/4.5.4": {
@@ -979,6 +1149,22 @@
             "assetType": "runtime",
             "rid": "win"
           }
+        }
+      },
+      "System.Reactive/5.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net5.0/System.Reactive.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net5.0/System.Reactive.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net5.0/_._": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -1603,6 +1789,148 @@
         "lib/netstandard2.0/ConcurrentCollections.xml"
       ]
     },
+    "Discord.Net/3.9.0": {
+      "sha512": "jlDs5jiRDfPSP2WWNIw3J3TqKXJKQWTgCeTpYchI9+AzdTX4lOs2RWWvNRPJydUC69dEc9Yew9A3C+8G2zxMMQ==",
+      "type": "package",
+      "path": "discord.net/3.9.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "PackageLogo.png",
+        "discord.net.3.9.0.nupkg.sha512",
+        "discord.net.nuspec"
+      ]
+    },
+    "Discord.Net.Commands/3.9.0": {
+      "sha512": "Zbv2XQ4jPa2/b7TKR32OqGpAo/H7ps43fgVi57M/IBwnI6oYEOHjGAbnlPD5Rx/gbD/Gmj+n+Q+yWeUQnxfojg==",
+      "type": "package",
+      "path": "discord.net.commands/3.9.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "PackageLogo.png",
+        "discord.net.commands.3.9.0.nupkg.sha512",
+        "discord.net.commands.nuspec",
+        "lib/net461/Discord.Net.Commands.dll",
+        "lib/net461/Discord.Net.Commands.xml",
+        "lib/net5.0/Discord.Net.Commands.dll",
+        "lib/net5.0/Discord.Net.Commands.xml",
+        "lib/net6.0/Discord.Net.Commands.dll",
+        "lib/net6.0/Discord.Net.Commands.xml",
+        "lib/netstandard2.0/Discord.Net.Commands.dll",
+        "lib/netstandard2.0/Discord.Net.Commands.xml",
+        "lib/netstandard2.1/Discord.Net.Commands.dll",
+        "lib/netstandard2.1/Discord.Net.Commands.xml"
+      ]
+    },
+    "Discord.Net.Core/3.9.0": {
+      "sha512": "pO1V1yGBM5pYYWuUbSIUM/C6jQVG8cNmZnVMZxXto1NJq16Ldgvg3KgiS9GMLMF1o/Q7EenIFI6jFaDvIBg6Mw==",
+      "type": "package",
+      "path": "discord.net.core/3.9.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "PackageLogo.png",
+        "discord.net.core.3.9.0.nupkg.sha512",
+        "discord.net.core.nuspec",
+        "lib/net461/Discord.Net.Core.dll",
+        "lib/net461/Discord.Net.Core.xml",
+        "lib/net5.0/Discord.Net.Core.dll",
+        "lib/net5.0/Discord.Net.Core.xml",
+        "lib/net6.0/Discord.Net.Core.dll",
+        "lib/net6.0/Discord.Net.Core.xml",
+        "lib/netstandard2.0/Discord.Net.Core.dll",
+        "lib/netstandard2.0/Discord.Net.Core.xml",
+        "lib/netstandard2.1/Discord.Net.Core.dll",
+        "lib/netstandard2.1/Discord.Net.Core.xml"
+      ]
+    },
+    "Discord.Net.Interactions/3.9.0": {
+      "sha512": "q8sRTf+1uy5MPoZFaj1XZ3I7PTll2lA6Nn6doLWlLYMZPqVQ7TNfhv2lxgMySgvSfmSXHncvh6z4ap1F+lk9og==",
+      "type": "package",
+      "path": "discord.net.interactions/3.9.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "PackageLogo.png",
+        "discord.net.interactions.3.9.0.nupkg.sha512",
+        "discord.net.interactions.nuspec",
+        "lib/net461/Discord.Net.Interactions.dll",
+        "lib/net461/Discord.Net.Interactions.xml",
+        "lib/net5.0/Discord.Net.Interactions.dll",
+        "lib/net5.0/Discord.Net.Interactions.xml",
+        "lib/net6.0/Discord.Net.Interactions.dll",
+        "lib/net6.0/Discord.Net.Interactions.xml",
+        "lib/netstandard2.0/Discord.Net.Interactions.dll",
+        "lib/netstandard2.0/Discord.Net.Interactions.xml",
+        "lib/netstandard2.1/Discord.Net.Interactions.dll",
+        "lib/netstandard2.1/Discord.Net.Interactions.xml"
+      ]
+    },
+    "Discord.Net.Rest/3.9.0": {
+      "sha512": "Rde+/TUmcy/vZGuHJQ0nQioMEg8hcLBvjry40/khSYnVvHw22IPNYxLEftej/onKseyjbtb1F+u4JSfQwszBKQ==",
+      "type": "package",
+      "path": "discord.net.rest/3.9.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "PackageLogo.png",
+        "discord.net.rest.3.9.0.nupkg.sha512",
+        "discord.net.rest.nuspec",
+        "lib/net461/Discord.Net.Rest.dll",
+        "lib/net461/Discord.Net.Rest.xml",
+        "lib/net5.0/Discord.Net.Rest.dll",
+        "lib/net5.0/Discord.Net.Rest.xml",
+        "lib/net6.0/Discord.Net.Rest.dll",
+        "lib/net6.0/Discord.Net.Rest.xml",
+        "lib/netstandard2.0/Discord.Net.Rest.dll",
+        "lib/netstandard2.0/Discord.Net.Rest.xml",
+        "lib/netstandard2.1/Discord.Net.Rest.dll",
+        "lib/netstandard2.1/Discord.Net.Rest.xml"
+      ]
+    },
+    "Discord.Net.Webhook/3.9.0": {
+      "sha512": "Zv3Rwl8UFNkCZBvzOuvzTSiG59jb+ck52szF+rRS0v79wui4couaMrSBtwHKIx2ZN2pbUwedyVUvnRTM+2clWA==",
+      "type": "package",
+      "path": "discord.net.webhook/3.9.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "PackageLogo.png",
+        "discord.net.webhook.3.9.0.nupkg.sha512",
+        "discord.net.webhook.nuspec",
+        "lib/net5.0/Discord.Net.Webhook.dll",
+        "lib/net5.0/Discord.Net.Webhook.xml",
+        "lib/net6.0/Discord.Net.Webhook.dll",
+        "lib/net6.0/Discord.Net.Webhook.xml",
+        "lib/netstandard2.0/Discord.Net.Webhook.dll",
+        "lib/netstandard2.0/Discord.Net.Webhook.xml",
+        "lib/netstandard2.1/Discord.Net.Webhook.dll",
+        "lib/netstandard2.1/Discord.Net.Webhook.xml"
+      ]
+    },
+    "Discord.Net.WebSocket/3.9.0": {
+      "sha512": "iw8umoLyG3DiYU33qYkQNPbfUGWYkPTE2Cs2HBnSAQBn92HI8rJZijKNpJjXLNurf1pHFKAQOToLHydHu9QtFQ==",
+      "type": "package",
+      "path": "discord.net.websocket/3.9.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "PackageLogo.png",
+        "discord.net.websocket.3.9.0.nupkg.sha512",
+        "discord.net.websocket.nuspec",
+        "lib/net461/Discord.Net.WebSocket.dll",
+        "lib/net461/Discord.Net.WebSocket.xml",
+        "lib/net5.0/Discord.Net.WebSocket.dll",
+        "lib/net5.0/Discord.Net.WebSocket.xml",
+        "lib/net6.0/Discord.Net.WebSocket.dll",
+        "lib/net6.0/Discord.Net.WebSocket.xml",
+        "lib/netstandard2.0/Discord.Net.WebSocket.dll",
+        "lib/netstandard2.0/Discord.Net.WebSocket.xml",
+        "lib/netstandard2.1/Discord.Net.WebSocket.dll",
+        "lib/netstandard2.1/Discord.Net.WebSocket.xml"
+      ]
+    },
     "DSharpPlus/4.3.0": {
       "sha512": "XE++PG6ITT4w3WL4K9zBpMYU29holXSSB0dwVDL4S2muwi2BiD6pGta5kCNm1VAKkaKM+0SsUB7RljGMGKW36g==",
       "type": "package",
@@ -1660,6 +1988,31 @@
         "lib/netcoreapp2.1/Emzi0767.Common.xml",
         "lib/netstandard2.0/Emzi0767.Common.dll",
         "lib/netstandard2.0/Emzi0767.Common.xml"
+      ]
+    },
+    "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
+      "sha512": "yuvf07qFWFqtK3P/MRkEKLhn5r2UbSpVueRziSqj0yJQIKFwG1pq9mOayK3zE5qZCTs0CbrwL9M6R8VwqyGy2w==",
+      "type": "package",
+      "path": "microsoft.bcl.asyncinterfaces/1.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.Bcl.AsyncInterfaces.dll",
+        "lib/net461/Microsoft.Bcl.AsyncInterfaces.xml",
+        "lib/netstandard2.0/Microsoft.Bcl.AsyncInterfaces.dll",
+        "lib/netstandard2.0/Microsoft.Bcl.AsyncInterfaces.xml",
+        "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll",
+        "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.xml",
+        "microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
+        "microsoft.bcl.asyncinterfaces.nuspec",
+        "ref/net461/Microsoft.Bcl.AsyncInterfaces.dll",
+        "ref/netstandard2.0/Microsoft.Bcl.AsyncInterfaces.dll",
+        "ref/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll",
+        "useSharedDesignerContext.txt",
+        "version.txt"
       ]
     },
     "Microsoft.Extensions.Configuration/7.0.0": {
@@ -2067,6 +2420,18 @@
         "newtonsoft.json.13.0.2.nupkg.sha512",
         "newtonsoft.json.nuspec",
         "packageIcon.png"
+      ]
+    },
+    "OpenAI/1.2.0": {
+      "sha512": "TkNNvaYE9kF4YqEH51qM74JtS4JXhskKPZx1+IJpeWE/KoqXKxicw7KIQ/SnhfkjBdlUgThrjqFIKqDvzEqxHg==",
+      "type": "package",
+      "path": "openai/1.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/OpenAI_API.dll",
+        "openai.1.2.0.nupkg.sha512",
+        "openai.nuspec"
       ]
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {
@@ -2781,6 +3146,25 @@
         "system.globalization.extensions.nuspec"
       ]
     },
+    "System.Interactive.Async/5.0.0": {
+      "sha512": "QaqhQVDiULcu4vm6o89+iP329HcK44cETHOYgy/jfEjtzeFy0ZxmuM7nel9ocjnKxEM4yh1mli7hgh8Q9o+/Iw==",
+      "type": "package",
+      "path": "system.interactive.async/5.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net461/System.Interactive.Async.dll",
+        "lib/net461/System.Interactive.Async.xml",
+        "lib/netcoreapp3.1/System.Interactive.Async.dll",
+        "lib/netcoreapp3.1/System.Interactive.Async.xml",
+        "lib/netstandard2.0/System.Interactive.Async.dll",
+        "lib/netstandard2.0/System.Interactive.Async.xml",
+        "lib/netstandard2.1/System.Interactive.Async.dll",
+        "lib/netstandard2.1/System.Interactive.Async.xml",
+        "system.interactive.async.5.0.0.nupkg.sha512",
+        "system.interactive.async.nuspec"
+      ]
+    },
     "System.IO/4.3.0": {
       "sha512": "3qjaHvxQPDpSOYICjUoTsmoq5u6QJAFRUITgeT/4gqkF1bajbSmb1kwSxEA8AHlofqgcKJcM8udgieRNhaJ5Cg==",
       "type": "package",
@@ -3009,6 +3393,33 @@
         "ref/xamarinwatchos10/_._",
         "system.linq.4.3.0.nupkg.sha512",
         "system.linq.nuspec"
+      ]
+    },
+    "System.Linq.Async/5.0.0": {
+      "sha512": "cPtIuuH8TIjVHSi2ewwReWGW1PfChPE0LxPIDlfwVcLuTM9GANFTXiMB7k3aC4sk3f0cQU25LNKzx+jZMxijqw==",
+      "type": "package",
+      "path": "system.linq.async/5.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net461/System.Linq.Async.dll",
+        "lib/net461/System.Linq.Async.xml",
+        "lib/netcoreapp3.1/System.Linq.Async.dll",
+        "lib/netcoreapp3.1/System.Linq.Async.xml",
+        "lib/netstandard2.0/System.Linq.Async.dll",
+        "lib/netstandard2.0/System.Linq.Async.xml",
+        "lib/netstandard2.1/System.Linq.Async.dll",
+        "lib/netstandard2.1/System.Linq.Async.xml",
+        "ref/net461/System.Linq.Async.dll",
+        "ref/net461/System.Linq.Async.xml",
+        "ref/netcoreapp3.1/System.Linq.Async.dll",
+        "ref/netcoreapp3.1/System.Linq.Async.xml",
+        "ref/netstandard2.0/System.Linq.Async.dll",
+        "ref/netstandard2.0/System.Linq.Async.xml",
+        "ref/netstandard2.1/System.Linq.Async.dll",
+        "ref/netstandard2.1/System.Linq.Async.xml",
+        "system.linq.async.5.0.0.nupkg.sha512",
+        "system.linq.async.nuspec"
       ]
     },
     "System.Memory/4.5.4": {
@@ -3385,6 +3796,35 @@
         "runtimes/win/lib/netstandard1.3/System.Net.WebSockets.Client.dll",
         "system.net.websockets.client.4.3.2.nupkg.sha512",
         "system.net.websockets.client.nuspec"
+      ]
+    },
+    "System.Reactive/5.0.0": {
+      "sha512": "erBZjkQHWL9jpasCE/0qKAryzVBJFxGHVBAvgRN1bzM0q2s1S4oYREEEL0Vb+1kA/6BKb5FjUZMp5VXmy+gzkQ==",
+      "type": "package",
+      "path": "system.reactive/5.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/net5.0/_._",
+        "build/netcoreapp3.1/System.Reactive.dll",
+        "build/netcoreapp3.1/System.Reactive.targets",
+        "build/netcoreapp3.1/System.Reactive.xml",
+        "buildTransitive/net5.0/_._",
+        "buildTransitive/netcoreapp3.1/System.Reactive.targets",
+        "lib/net472/System.Reactive.dll",
+        "lib/net472/System.Reactive.xml",
+        "lib/net5.0-windows10.0.19041/System.Reactive.dll",
+        "lib/net5.0-windows10.0.19041/System.Reactive.xml",
+        "lib/net5.0/System.Reactive.dll",
+        "lib/net5.0/System.Reactive.xml",
+        "lib/netcoreapp3.1/_._",
+        "lib/netstandard2.0/System.Reactive.dll",
+        "lib/netstandard2.0/System.Reactive.xml",
+        "lib/uap10.0.16299/System.Reactive.dll",
+        "lib/uap10.0.16299/System.Reactive.pri",
+        "lib/uap10.0.16299/System.Reactive.xml",
+        "system.reactive.5.0.0.nupkg.sha512",
+        "system.reactive.nuspec"
       ]
     },
     "System.Reflection/4.3.0": {
@@ -4985,9 +5425,11 @@
       "DSharpPlus >= 4.3.0",
       "DSharpPlus.CommandsNext >= 4.3.0",
       "DSharpPlus.Interactivity >= 4.3.0",
+      "Discord.Net >= 3.9.0",
       "Microsoft.Extensions.Configuration >= 7.0.0",
       "Microsoft.Extensions.Configuration.Binder >= 7.0.1",
-      "Microsoft.Extensions.Configuration.Json >= 7.0.0"
+      "Microsoft.Extensions.Configuration.Json >= 7.0.0",
+      "OpenAI >= 1.2.0"
     ]
   },
   "packageFolders": {
@@ -5039,6 +5481,10 @@
             "target": "Package",
             "version": "[4.3.0, )"
           },
+          "Discord.Net": {
+            "target": "Package",
+            "version": "[3.9.0, )"
+          },
           "Microsoft.Extensions.Configuration": {
             "target": "Package",
             "version": "[7.0.0, )"
@@ -5050,6 +5496,10 @@
           "Microsoft.Extensions.Configuration.Json": {
             "target": "Package",
             "version": "[7.0.0, )"
+          },
+          "OpenAI": {
+            "target": "Package",
+            "version": "[1.2.0, )"
           }
         },
         "imports": [
